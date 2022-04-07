@@ -8,11 +8,13 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { WeatherDisplayComponent } from './ui/components/weather-display/weather-display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchLocationComponent
+    SearchLocationComponent,
+    WeatherDisplayComponent
   ],
   imports: [
     BrowserModule,

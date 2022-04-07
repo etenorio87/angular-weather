@@ -1,4 +1,5 @@
-import { IFeature, ISearchItem } from './../../../core/domain/types';
+import { WeatherService } from './../../../core/services/weather.service';
+import { IFeature, ISearchItem, IWeatherResult } from './../../../core/domain/types';
 import { LocationService } from './../../../core/services/location.service';
 import { Component } from "@angular/core";
 import { ISearchResult } from 'src/app/core/domain/types';
@@ -16,7 +17,8 @@ export class SearchLocationComponent {
   /**
    *
    */
-  constructor(private service: LocationService) {
+  constructor(private service: LocationService,
+              private weatherService: WeatherService) {
 
   }
 
@@ -27,7 +29,17 @@ export class SearchLocationComponent {
   }
 
   onItemSelected(event: ISearchItem) {
-    console.log( event.value.center );
+
+    if (event && event.value && event.value.center) {
+      const [ lon, lat ] = event.value.center;
+
+      this.weatherService.searchWeatherByLatLon( lat, lon ).subscribe( (response: IWeatherResult) => {
+
+        console.log( response );
+
+      } );
+    }
+
   }
 
 

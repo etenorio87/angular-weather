@@ -10,6 +10,7 @@ import { ISearchResult } from 'src/app/core/domain/types';
 })
 export class SearchLocationComponent {
 
+
   selectedItem: ISearchItem | undefined;
 
   results: ISearchItem[] = [];
@@ -33,15 +34,16 @@ export class SearchLocationComponent {
     if (event && event.value && event.value.center) {
       const [ lon, lat ] = event.value.center;
 
-      this.weatherService.searchWeatherByLatLon( lat, lon ).subscribe( (response: IWeatherResult) => {
-
-        console.log( response );
-
-      } );
+      this.weatherService.searchWeatherByLatLon( lat, lon ).subscribe( this.weatherObserver );
     }
 
   }
 
+  private weatherObserver = (response: IWeatherResult) => {
+
+    this.weatherService.setWeatherResult( response );
+
+  }
 
    private observer = (response: ISearchResult) => {
       // const results : string[] = [];

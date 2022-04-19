@@ -7,17 +7,11 @@ import { WeatherService } from './core/services/weather.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'angular-weather';
 
 
-  weatherResult: IWeatherResult = {};
 
-  constructor( private weatherService: WeatherService ) {}
-
-  ngOnInit(): void {
-    this.weatherService._weatherResultChanged$.subscribe( result => this.weatherResult = result);
-  }
 
 }

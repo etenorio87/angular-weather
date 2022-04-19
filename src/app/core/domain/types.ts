@@ -99,3 +99,11 @@ export interface IWind {
   gust?:  number;
 }
 
+export interface IUser {
+  id:        number;
+  name:      string;
+  email:     string;
+  password:  string;
+  enabled:   boolean;
+  createdAt: string;
+}

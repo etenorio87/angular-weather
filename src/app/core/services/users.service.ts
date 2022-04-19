@@ -21,6 +21,15 @@ export class UsersService {
     );
   }
 
+  /** GET hero by id. Will 404 if id not found */
+  getUserById(id: number): Observable<IUser> {
+    const url = `${this.usersUrl}/${id}`;
+    return this.http.get<IUser>(url).pipe(
+      tap(_ => console.log(`fetched user id=${id}`)),
+      catchError(this.handleError<IUser>(`getUserById id=${id}`))
+    );
+  }
+
 
 /**
  * Handle Http operation that failed.

@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './core/services/in-memory-data.service';
+import { UserDetailComponent } from './ui/components/user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InMemoryDataService } from './core/services/in-memory-data.service';
     WeatherDisplayComponent,
     TempPipe,
     UsersListComponent,
-    WeatherComponent
+    WeatherComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -17,4 +17,12 @@ export class UsersListComponent implements OnInit {
     this.service.getUsers().subscribe( resp => this.users = resp );
   }
 
+  deleteUser(id: number): void {
+    this.service.deleteUser(id).subscribe( resp => {
+      console.log( 'Usuario eliminado' );
+      const list = this.users.filter(  user => user.id != id );
+      this.users = [...list];
+    } );
+  }
+
 }

@@ -7,7 +7,7 @@ import { SearchLocationComponent } from './ui/components/search-location/search-
 import { AutoCompleteModule } from 'primeng/autocomplete';
 
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WeatherDisplayComponent } from './ui/components/weather-display/weather-display.component';
 import { TempPipe } from './core/pipes/temp.pipe';
 import { UsersListComponent } from './ui/components/users-list/users-list.component';
@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './core/services/in-memory-data.service';
 import { UserDetailComponent } from './ui/components/user-detail/user-detail.component';
+import { UserFormComponent } from './ui/components/user-form/user-form.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,13 @@ import { UserDetailComponent } from './ui/components/user-detail/user-detail.com
     TempPipe,
     UsersListComponent,
     WeatherComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    UserFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,

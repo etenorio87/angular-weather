@@ -9,6 +9,10 @@ import { catchError, Observable, of, tap } from 'rxjs';
 export class UsersService {
   private usersUrl = 'api/users';  // URL to web api
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(private http: HttpClient) { }
 
 
@@ -30,6 +34,23 @@ export class UsersService {
     );
   }
 
+  /** POST: add a new hero to the server */
+  addUser(user: IUser): Observable<IUser> {
+    return this.http.post<IUser>(this.usersUrl, user, this.httpOptions).pipe(
+      tap((newUser: IUser) => console.log(`added user w/ id=${newUser.id}`)),
+      catchError(this.handleError<IUser>('addUser'))
+    );
+  }
+
+  /** DELETE: delete the hero from the server */
+  deleteUser(id: number): Observable<IUser> {
+    const url = `${this.usersUrl}/${id}`;
+
+    return this.http.delete<IUser>(url, this.httpOptions).pipe(
+      tap(_ => console.log(`deleted user id=${id}`)),
+      catchError(this.handleError<IUser>('deleteUser'))
+    );
+  }
 
 /**
  * Handle Http operation that failed.

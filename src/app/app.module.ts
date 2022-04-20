@@ -6,6 +6,8 @@ import { SearchLocationComponent } from './ui/components/search-location/search-
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MenubarModule } from 'primeng/menubar';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,8 +40,10 @@ import { UserFormComponent } from './ui/components/user-form/user-form.component
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    AutoCompleteModule,
 
+    AutoCompleteModule,
+    ButtonModule,
+    TableModule,
     MenubarModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests

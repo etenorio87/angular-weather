@@ -1,17 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { IWeatherResult } from './core/domain/types';
-import { WeatherService } from './core/services/weather.service';
+import { MenuItem, PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'angular-weather';
 
+  menuItems: MenuItem[] = [];
 
+
+  ngOnInit(): void {
+
+    this.menuItems = [
+        {
+          label: 'Users',
+          routerLink: '/users',
+          icon: PrimeIcons.USERS
+        },
+        {
+          label: 'Weather',
+          routerLink: '/weather',
+          icon: PrimeIcons.CLOUD
+        }
+    ];
+
+  }
 
 
 }

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchLocationComponent } from './ui/components/search-location/search-location.component';
 
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MenubarModule } from 'primeng/menubar';
 
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -38,6 +39,8 @@ import { UserFormComponent } from './ui/components/user-form/user-form.component
     BrowserAnimationsModule,
     AppRoutingModule,
     AutoCompleteModule,
+
+    MenubarModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

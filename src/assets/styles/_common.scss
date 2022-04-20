@@ -1,0 +1,18 @@
+.container {
+  width: 95%;
+  margin: 0 auto;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  .p-menubar {
+    border-radius: 0;
+  }
+}
+
+main {
+  margin-top: 100px;
+}

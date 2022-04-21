@@ -6,29 +6,9 @@ import { MenuItem, PrimeIcons } from 'primeng/api';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'angular-weather';
-
-  menuItems: MenuItem[] = [];
-
-
-  ngOnInit(): void {
-
-    this.menuItems = [
-        {
-          label: 'Users',
-          routerLink: '/users',
-          icon: PrimeIcons.USERS
-        },
-        {
-          label: 'Weather',
-          routerLink: '/weather',
-          icon: PrimeIcons.CLOUD
-        }
-    ];
-
-  }
 
 
 }

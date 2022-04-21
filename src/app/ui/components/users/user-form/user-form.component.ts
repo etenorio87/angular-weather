@@ -1,12 +1,13 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IUser } from 'src/app/core/domain/types';
 import { UsersService } from 'src/app/core/services/users.service';
+
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
@@ -70,12 +71,13 @@ export class UserFormComponent implements OnInit, OnDestroy {
   }
 
   private buildFormData(userdata: IUser | null): void {
+    const date = userdata && userdata.createdAt && new Date( userdata.createdAt ) || new Date();
     this.userForm = new FormGroup({
       'name': new FormControl(userdata?.name, Validators.required),
       'email': new FormControl(userdata?.email, [Validators.required, Validators.email]),
       'password': new FormControl(userdata?.password),
       'enabled': new FormControl(userdata?.enabled || false),
-      'createdAt': new FormControl(userdata?.createdAt, Validators.required)
+      'createdAt': new FormControl( date , Validators.required)
     });
   }
 

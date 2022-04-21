@@ -4,7 +4,6 @@ import { UsersService } from 'src/app/core/services/users.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.scss']
 })

@@ -4,7 +4,6 @@ import { UsersService } from 'src/app/core/services/users.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })

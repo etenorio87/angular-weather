@@ -1,3 +1,4 @@
+import { DirectivesModule } from './../../core/directives/directives.module';
 import { ButtonModule } from 'primeng/button';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,6 +14,7 @@ import { SharedModule } from 'primeng/api';
   imports: [
     ButtonModule,
     CommonModule,
+    DirectivesModule,
     MenubarModule,
     SharedModule
   ],

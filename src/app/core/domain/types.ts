@@ -107,3 +107,8 @@ export interface IUser {
   enabled:   boolean;
   createdAt: Date;
 }
+
+export interface ILoginRequest {
+  username: string;
+  password: string;
+}

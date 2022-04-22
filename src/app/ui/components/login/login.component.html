@@ -1,9 +1,10 @@
 <div class="loginmodal-container">
   <h1>Login to Your Account</h1><br>
-  <form>
-  <input type="text" name="user" placeholder="Username">
-  <input type="password" name="pass" placeholder="Password">
-  <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+  <form [formGroup]="formLogin" (ngSubmit)="onFormSubmit()">
+    <input type="text" name="user" placeholder="Username" formControlName="username">
+    <input type="password" name="pass" placeholder="Password" formControlName="password">
+
+    <input type="submit" name="login" class="login loginmodal-submit" value="Login" [disabled]="formLogin.invalid">
   </form>
 
   <div class="login-help">

@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, PrimeIcons } from 'primeng/api';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +12,8 @@ export class HeaderComponent implements OnInit {
 
   menuItems: MenuItem[] = [];
 
+  constructor(public auth: AuthService,
+              private router: Router ) { }
 
   ngOnInit(): void {
 
@@ -26,6 +30,11 @@ export class HeaderComponent implements OnInit {
         }
     ];
 
+  }
+
+  disconnect(): void {
+    this.auth.disconnect();
+    this.router.navigate(['/login']);
   }
 
 }

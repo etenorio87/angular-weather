@@ -4,7 +4,10 @@
         <img src="assets/images/primeng.svg" height="40" class="mr-2">
     </ng-template>
     <ng-template pTemplate="end">
-        <input type="text" class="form-control" pInputText placeholder="Search">
+        <div class="flex" *ngIf="auth.isAuthenticated()">
+          <input type="text" class="form-control mr-3" pInputText placeholder="Search">
+          <button pButton pRipple type="button" icon="pi pi-power-off" class="p-button-danger p-button-rounded p-button-text p-button-plain p-button-sm" (click)="disconnect()"></button>
+        </div>
     </ng-template>
   </p-menubar>
 </header>

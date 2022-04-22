@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IUser } from 'src/app/core/domain/types';
 import { UsersService } from 'src/app/core/services/users.service';
 
@@ -16,6 +17,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
   userForm: FormGroup | undefined;
   userId: number | undefined;
 
+  private subs: Subscription[] = [];
+
   constructor(private service: UsersService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -26,10 +29,12 @@ export class UserFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.userId = +this.route.snapshot.params['id'];
     if (this.userId) {
-      this.service.getUserById( this.userId ).subscribe( user => {
+      const sub1 = this.service.getUserById( this.userId ).subscribe( user => {
         console.log(user);
         this.buildFormData(user);
       } );
+
+      this.subs.push( sub1 );
     }
   }
 
@@ -45,7 +50,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
     if ( this.userId ) {
 
       userData.id = this.userId;
-      this.service.updateUser( userData ).subscribe( resp => {
+      const sub2 = this.service.updateUser( userData ).subscribe( resp => {
         Swal.fire(
           'Updated!',
           `${userData.name} has been updated.`,
@@ -53,9 +58,11 @@ export class UserFormComponent implements OnInit, OnDestroy {
         ).finally( () =>  this.router.navigate(['/users']).finally());
       } );
 
+      this.subs.push( sub2 );
+
     } else {
 
-      this.service.addUser( userData ).subscribe( resp => {
+      const sub3 = this.service.addUser( userData ).subscribe( resp => {
         if ( resp.id ) {
           Swal.fire(
             'Created!',
@@ -64,6 +71,8 @@ export class UserFormComponent implements OnInit, OnDestroy {
           ).finally( () =>  this.router.navigate(['/users']).finally());
         }
       } );
+
+      this.subs.push( sub3 );
 
     }
 
@@ -83,6 +92,7 @@ export class UserFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.userId = undefined;
+      this.subs.forEach( sub => sub.unsubscribe() );
   }
 
 

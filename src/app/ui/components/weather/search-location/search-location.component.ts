@@ -1,19 +1,22 @@
 import { WeatherService } from '../../../../core/services/weather.service';
-import { IFeature, ISearchItem, IWeatherResult } from '../../../../core/domain/types';
+import { ISearchItem, IWeatherResult } from '../../../../core/domain/types';
 import { LocationService } from '../../../../core/services/location.service';
-import { Component } from "@angular/core";
+import { Component, OnDestroy } from "@angular/core";
 import { ISearchResult } from 'src/app/core/domain/types';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-search-location',
   templateUrl: './search-location.component.html'
 })
-export class SearchLocationComponent {
+export class SearchLocationComponent implements OnDestroy {
 
 
   selectedItem: ISearchItem | undefined;
 
   results: ISearchItem[] = [];
+
+  private subs: Subscription[] = [];
 
   /**
    *
@@ -34,9 +37,14 @@ export class SearchLocationComponent {
     if (event && event.value && event.value.center) {
       const [ lon, lat ] = event.value.center;
 
-      this.weatherService.searchWeatherByLatLon( lat, lon ).subscribe( this.weatherObserver );
+      const sub = this.weatherService.searchWeatherByLatLon( lat, lon ).subscribe( this.weatherObserver );
+      this.subs.push( sub );
     }
 
+  }
+
+  ngOnDestroy(): void {
+      this.subs.forEach( sub => sub.unsubscribe() );
   }
 
   private weatherObserver = (response: IWeatherResult) => {

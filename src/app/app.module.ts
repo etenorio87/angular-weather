@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HTPP_INTERCEPTORS_PROVIDERS } from './core/http';
 
 
 @NgModule({
@@ -24,9 +25,8 @@ import { AppRoutingModule } from './app-routing.module';
 
     LayoutModule,
 
-
   ],
-  providers: [],
+  providers: [HTPP_INTERCEPTORS_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

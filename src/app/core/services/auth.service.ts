@@ -20,13 +20,18 @@ export class AuthService {
     return this.http.post<IUser>(`${this.authUrl}/login`, data).pipe(
       tap( (userData: IUser) => {
         if (userData && userData.id) {
-          this.setAuthId( userData.email, userData.password );
+          this.setAuthId( data.username, data.password );
           this.setLoggedUser( userData );
         } else {
           this.disconnect();
         }
       })
     );
+  }
+
+  public isAuthenticated(): boolean {
+    const data = this.getLoggedUser();
+    return data != null;
   }
 
   public setAuthId(username: string, password: string): void {

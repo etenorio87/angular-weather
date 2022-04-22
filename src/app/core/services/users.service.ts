@@ -2,18 +2,21 @@ import { IUser } from './../domain/types';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, of, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private usersUrl = 'http://localhost:8080/usuarios';  // URL to web api
+  private usersUrl = `${environment.backendServer}/usuarios`;  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private auth: AuthService) { }
 
 
   /** GET users from the server */

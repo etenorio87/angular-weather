@@ -14,6 +14,7 @@
         <th>Name</th>
         <th>Email</th>
         <th>Enabled</th>
+        <th>Role</th>
         <th>Created</th>
         <th></th>
       </tr>
@@ -30,6 +31,7 @@
           <i class="pi pi-times text-danger" *ngIf="!user.enabled"></i>
         </td>
         <td>{{ user.createdAt | date : 'yyyy-MM-dd' }}</td>
+        <td>{{ user.role }}</td>
         <td class="">
           <div class="p-buttonset">
             <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-text p-button-info p-button-sm" [routerLink]="['/users/form/update', user.id]"></button>

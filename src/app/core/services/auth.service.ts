@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of, Subject, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ERoles } from '../domain/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,21 @@ export class AuthService {
   public isAuthenticated(): boolean {
     const data = this.getLoggedUser();
     return data != null;
+  }
+
+  public isAdmin(): boolean {
+    const data = this.getLoggedUser();
+    return data != null && data.role === ERoles.ADMIN;
+  }
+
+  public isRole(role: string | string[]): boolean {
+    const data = this.getLoggedUser();
+    if (typeof role === 'string') {
+      return data != null && data.role === role;
+    } else if (typeof role === 'object') {
+      return data != null && role.includes(data.role);
+    }
+    return false;
   }
 
   public setAuthId(username: string, password: string): void {

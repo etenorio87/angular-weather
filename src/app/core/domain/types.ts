@@ -105,6 +105,7 @@ export interface IUser {
   email:     string;
   password:  string;
   enabled:   boolean;
+  role:      string;
   createdAt: Date;
 }
 

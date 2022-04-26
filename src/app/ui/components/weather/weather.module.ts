@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../../core/guards/auth.guard';
 import { FormsModule } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,7 +10,8 @@ import { WeatherComponent } from './weather.component';
 import { TempPipe } from 'src/app/core/pipes/temp.pipe';
 
 const routes: Routes = [
-  { path: '', component: WeatherComponent }
+  { path: '', component: WeatherComponent, canActivate: [AuthGuard] },
+  { path: 'asd', component: WeatherComponent }
 ];
 
 @NgModule({
